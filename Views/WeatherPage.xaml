@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="CocusWeatherChallenge.Views.WeatherPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Weather Result">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="24" Spacing="16">
+
+            <Label
+                Text="{Binding Weather.CityName}"
+                FontSize="28"
+                FontAttributes="Bold" />
+
+            <Label
+                Text="{Binding CacheMessage}"
+                FontSize="14"
+                TextColor="Orange" />
+
+            <Label
+                Text="{Binding Weather.CurrentTemperature, StringFormat='Current temperature: {0:F1} °C'}"
+                FontSize="22" />
+
+            <Label
+                Text="{Binding Weather.CurrentDescription}"
+                FontSize="18" />
+
+            <Label
+                Text="5-day forecast"
+                FontSize="20"
+                FontAttributes="Bold"
+                Margin="0,16,0,0" />
+
+            <CollectionView ItemsSource="{Binding Weather.Forecast}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Border Padding="12" Margin="0,6">
+                            <VerticalStackLayout>
+                                <Label
+                                    Text="{Binding Date, StringFormat='{0:dddd, dd MMM}'}"
+                                    FontAttributes="Bold" />
+
+                                <Label
+                                    Text="{Binding WeatherDescription}" />
+
+                                <Label
+                                    Text="{Binding MaxTemperature, StringFormat='Max: {0:F1} °C'}" />
+
+                                <Label
+                                    Text="{Binding MinTemperature, StringFormat='Min: {0:F1} °C'}" />
+                            </VerticalStackLayout>
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
